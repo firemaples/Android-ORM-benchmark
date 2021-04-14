@@ -214,6 +214,13 @@ dependencies {
     freezerProvided 'fr.xebia.android.freezer:freezer-annotations:2.0.6'
     freezerAnnotationProcessor 'fr.xebia.android.freezer:freezer-compiler:2.0.6'
 
-    roomCompile 'android.arch.persistence.room:runtime:1.0.0-alpha1'
-    roomAnnotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha1'
+    //Room
+    def room_version = "2.2.6"
+    roomImplementation "androidx.room:room-runtime:$room_version"
+    roomAnnotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // A workaround to fix the room bug with Apple Silicon
+    // https://youtrack.jetbrains.com/issue/DBE-12342
+    // https://issuetracker.google.com/issues/174695268
+    roomAnnotationProcessor("org.xerial:sqlite-jdbc:3.34.0")
 }

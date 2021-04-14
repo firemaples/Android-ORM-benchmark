@@ -2,46 +2,53 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "00777afde1f347acb68cc090939682fa",
+    "identityHash": "2de90d24f7c86069c437889b40f8209d",
     "entities": [
       {
         "tableName": "Person",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `firstName` TEXT, `secondName` TEXT, `birthdayDate` INTEGER, `gender` TEXT, `phone` INTEGER, `library_id` INTEGER, FOREIGN KEY(`library_id`) REFERENCES `Library`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `firstName` TEXT, `secondName` TEXT, `birthdayDate` INTEGER, `gender` TEXT, `phone` INTEGER NOT NULL, `library_id` INTEGER NOT NULL, FOREIGN KEY(`library_id`) REFERENCES `Library`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "firstName",
             "columnName": "firstName",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "secondName",
             "columnName": "secondName",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "birthdayDate",
             "columnName": "birthdayDate",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": false
           },
           {
             "fieldPath": "gender",
             "columnName": "gender",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "phone",
             "columnName": "phone",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "libraryId",
             "columnName": "library_id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -57,7 +64,7 @@
             "columnNames": [
               "library_id"
             ],
-            "createSql": "CREATE  INDEX `index_Person_library_id` ON `${TABLE_NAME}` (`library_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Person_library_id` ON `${TABLE_NAME}` (`library_id`)"
           }
         ],
         "foreignKeys": [
@@ -76,37 +83,43 @@
       },
       {
         "tableName": "Book",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `author` TEXT, `title` TEXT, `pagesCount` INTEGER, `bookId` INTEGER, `library_id` INTEGER, FOREIGN KEY(`library_id`) REFERENCES `Library`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `author` TEXT, `title` TEXT, `pagesCount` INTEGER NOT NULL, `bookId` INTEGER NOT NULL, `library_id` INTEGER NOT NULL, FOREIGN KEY(`library_id`) REFERENCES `Library`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "author",
             "columnName": "author",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "title",
             "columnName": "title",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "pagesCount",
             "columnName": "pagesCount",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "bookId",
             "columnName": "bookId",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "libraryId",
             "columnName": "library_id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -122,7 +135,7 @@
             "columnNames": [
               "library_id"
             ],
-            "createSql": "CREATE  INDEX `index_Book_library_id` ON `${TABLE_NAME}` (`library_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Book_library_id` ON `${TABLE_NAME}` (`library_id`)"
           }
         ],
         "foreignKeys": [
@@ -141,22 +154,25 @@
       },
       {
         "tableName": "Library",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `address` TEXT, `name` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `address` TEXT, `name` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "address",
             "columnName": "address",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "name",
             "columnName": "name",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -169,9 +185,10 @@
         "foreignKeys": []
       }
     ],
+    "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"00777afde1f347acb68cc090939682fa\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2de90d24f7c86069c437889b40f8209d')"
     ]
   }
 }
