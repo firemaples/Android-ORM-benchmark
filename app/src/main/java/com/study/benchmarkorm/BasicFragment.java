@@ -4,9 +4,8 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,59 +13,59 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
 import com.db.chart.Tools;
 import com.db.chart.animation.Animation;
 import com.db.chart.model.LineSet;
 import com.db.chart.renderer.AxisRenderer;
 import com.db.chart.view.LineChartView;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class BasicFragment extends Fragment {
 
-    @Bind(R.id.play_full)
+    @BindView(R.id.play_full)
     ImageButton mPlayBtnFull;
-    @Bind(R.id.warning)
+    @BindView(R.id.warning)
     ImageButton mWarningBtn;
 
-    @Bind(R.id.play_read)
+    @BindView(R.id.play_read)
     ImageButton mPlayBtnRead;
-    @Bind(R.id.chart_read)
+    @BindView(R.id.chart_read)
     LineChartView mChartRead;
 
-    @Bind(R.id.play_write)
+    @BindView(R.id.play_write)
     ImageButton mPlayBtnWrite;
-    @Bind(R.id.chart_write)
+    @BindView(R.id.chart_write)
     LineChartView mChartWrite;
 
-    @Bind(R.id.play_update)
+    @BindView(R.id.play_update)
     ImageButton mPlayBtnUpdate;
-    @Bind(R.id.chart_update)
+    @BindView(R.id.chart_update)
     LineChartView mChartUpdate;
 
-    @Bind(R.id.play_delete)
+    @BindView(R.id.play_delete)
     ImageButton mPlayBtnDelete;
-    @Bind(R.id.chart_delete)
+    @BindView(R.id.chart_delete)
     LineChartView mChartDelete;
 
-    @Bind(R.id.tv_read)
+    @BindView(R.id.tv_read)
     TextView tv_read;
-    @Bind(R.id.tv_write)
+    @BindView(R.id.tv_write)
     TextView tv_write;
-    @Bind(R.id.tv_update)
+    @BindView(R.id.tv_update)
     TextView tv_update;
-    @Bind(R.id.tv_delete)
+    @BindView(R.id.tv_delete)
     TextView tv_delete;
 
-    @Bind(R.id.tv_read_result)
+    @BindView(R.id.tv_read_result)
     TextView tv_read_result;
-    @Bind(R.id.tv_write_result)
+    @BindView(R.id.tv_write_result)
     TextView tv_write_result;
-    @Bind(R.id.tv_update_result)
+    @BindView(R.id.tv_update_result)
     TextView tv_update_result;
-    @Bind(R.id.tv_delete_result)
+    @BindView(R.id.tv_delete_result)
     TextView tv_delete_result;
 
     private boolean isPlayedR = false;

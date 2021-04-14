@@ -6,15 +6,15 @@ def dbflow_version = "3.1.1"
 
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.study.benchmarkorm"
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
         release {
@@ -23,9 +23,11 @@ android {
         }
     }
 
+    flavorDimensions "version"
     productFlavors{
         //Alex
         realm {
+            dimension "version"
             applicationIdSuffix ".realm"
             versionNameSuffix "-realm"
             resValue "string", "app_name", "RealmBenchmark"
@@ -35,6 +37,7 @@ android {
             buildConfigField "float[]", "expectedDelete", "{1,2,3,4,5,6,7,8,9,15}"
         }
         greenDao {
+            dimension "version"
             applicationIdSuffix ".greenDao"
             versionNameSuffix "-greenDao"
             resValue "string", "app_name", "GeenDaoBenchmark"
@@ -50,6 +53,7 @@ android {
         }
 
         room {
+            dimension "version"
             applicationIdSuffix ".room"
             versionNameSuffix "-room"
             resValue "string", "app_name", "RoomBenchmark"
@@ -64,6 +68,7 @@ android {
             }
         }
         sprinkles {
+            dimension "version"
             applicationIdSuffix ".sprinkles"
             versionNameSuffix "-sprinkles"
             resValue "string", "app_name", "SprinklesBenchmark"
@@ -73,6 +78,7 @@ android {
             buildConfigField "float[]", "expectedDelete", "{1,2,3,4,5,6,7,8,9,1000}"
         }
         active {
+            dimension "version"
             applicationIdSuffix ".active"
             versionNameSuffix "-active"
             resValue "string", "app_name", "ActiveAndroidBenchmark"
@@ -82,6 +88,7 @@ android {
             buildConfigField "float[]", "expectedDelete", "{1,2,3,4,5,6,7,8,9,2000}"
         }
         sqlite{
+            dimension "version"
             applicationIdSuffix ".sqlite"
             versionNameSuffix "-sqlite"
             resValue "string", "app_name", "SQLiteBenchmark"
@@ -92,6 +99,7 @@ android {
         }
         //Vlad
         dbflow {
+            dimension "version"
             applicationIdSuffix ".dbflow"
             versionNameSuffix "-dbflow"
             resValue "string", "app_name", "DBFlowBenchmark"
@@ -101,6 +109,7 @@ android {
             buildConfigField "float[]", "expectedDelete", "{1,2,3,4,5,6,7,8,9,1000}"
         }
         freezer {
+            dimension "version"
             applicationIdSuffix ".freezer"
             versionNameSuffix "-freezer"
             resValue "string", "app_name", "FreezerBenchmark"
@@ -110,6 +119,7 @@ android {
             buildConfigField "float[]", "expectedDelete", "{1,2,3,4,5,6,7,8,9,1000}"
         }
         requery {
+            dimension "version"
             applicationIdSuffix ".requery"
             versionNameSuffix "-requery"
             resValue "string", "app_name", "RequeryBenchmark"
@@ -119,6 +129,7 @@ android {
             buildConfigField "float[]", "expectedDelete", "{1,2,3,4,5,6,7,8,9,1000}"
         }
         ormlite{
+            dimension "version"
             applicationIdSuffix ".ormlite"
             versionNameSuffix "-ormlite"
             resValue "string", "app_name", "ORMLiteBenchmark"
@@ -128,6 +139,7 @@ android {
             buildConfigField "float[]", "expectedDelete", "{1,2,3,4,5,6,7,8,9,1000}"
         }
         sugarOrm{
+            dimension "version"
             applicationIdSuffix ".sugarOrm"
             versionNameSuffix "-sugarOrm"
             resValue "string", "app_name", "SugarORMBenchmark"
@@ -143,20 +155,24 @@ android {
     dataBinding {
         enabled = true
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    androidTestCompile('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
+    compile 'androidx.appcompat:appcompat:1.2.0'
+    compile 'com.google.android.material:material:1.3.0'
 
     testCompile 'junit:junit:4.12'
 
-    compile 'com.jakewharton:butterknife:7.0.1'
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     compile 'com.diogobernardino:williamchart:2.4.0'
 
     //Realm
