@@ -105,6 +105,6 @@ public class Person extends Model {
     }
     
     public void setLibrary(Library library) {
-        this.library = library
+        this.library = library;
     }
 }
